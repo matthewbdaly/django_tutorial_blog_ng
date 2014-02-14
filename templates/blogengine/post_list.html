@@ -10,6 +10,9 @@
         {{ post.text|custom_markdown }}
         </div>
         <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
+        {% for tag in post.tags.all %}
+        <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        {% endfor %}
         {% endfor %}
 
         {% if page_obj.has_previous %}
