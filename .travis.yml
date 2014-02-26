@@ -4,6 +4,6 @@ python:
 # command to install dependencies
 install: "pip install -r requirements.txt"
 # command to run tests
-script: python manage.py jenkins
+script: coverage run manage.py test blogengine
 after_success:
     coveralls
