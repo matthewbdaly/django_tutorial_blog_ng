@@ -4,6 +4,6 @@ python:
 # command to install dependencies
 install: "pip install -r requirements.txt"
 # command to run tests
-script: coverage run manage.py test blogengine
+script: coverage run --include="blogengine/*" --omit="blogengine/migrations/*" manage.py test blogengine
 after_success:
     coveralls
