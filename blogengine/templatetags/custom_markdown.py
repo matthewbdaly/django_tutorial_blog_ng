@@ -1,4 +1,4 @@
-import markdown
+import markdown2
 
 from django import template
 from django.template.defaultfilters import stringfilter
@@ -10,9 +10,7 @@ register = template.Library()
 @register.filter(is_safe=True)
 @stringfilter
 def custom_markdown(value):
-    extensions = ["nl2br", ]
+    extras = ["fenced-code-blocks"]
 
-    return mark_safe(markdown.markdown(force_unicode(value),
-                                       extensions,
-                                       safe_mode=True,
-                                       enable_attributes=False))
+    return mark_safe(markdown2.markdown(force_unicode(value),
+                                       extras = extras))
