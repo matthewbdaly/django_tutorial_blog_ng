@@ -3,18 +3,28 @@
     {% load custom_markdown %}
 
     {% block content %}
-        <div class="post">
+        <div class="post col-md-12">
         <h1>{{ object.title }}</h1>
         <h3>{{ object.pub_date }}</h3>
         {{ object.text|custom_markdown }}
-        <a href="{{ object.category.get_absolute_url }}">{{ object.category.name }}</a>
-        {% for tag in post.tags.all %}
-        <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        </div>
+        {% if object.category %}
+        <div class="col-md-12">
+        <a href="{{ object.category.get_absolute_url }}"><span class="label label-primary">{{ object.category.name }}</span></a>
+        </div>
+        {% endif %}
+        {% if object.tags %}
+        <div class="col-md-12">
+        {% for tag in object.tags.all %}
+        <a href="{{ tag.get_absolute_url }}"><span class="label label-success">{{ tag.name }}</span></a>
         {% endfor %}
+        </div>
+        {% endif %}
 
+        <div class="col-md-12">
         <h4>Comments</h4>
-        <div class="fb-comments" data-href="http://{{ post.site }}{{ post.get_absolute_url }}" data-width="470" data-num-posts="10"></div>
-
+        <div class="fb-comments" data-href="http://{{ object.site }}{{ object.get_absolute_url }}" data-width="470" data-num-posts="10"></div>
+        </div>
         </div>
 
     {% endblock %}
