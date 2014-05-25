@@ -4,7 +4,7 @@ from blogengine.models import Post, Category, Tag
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
-import markdown
+import markdown2 as markdown
 import feedparser
 
 # Create your tests here.
