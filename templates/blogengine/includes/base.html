@@ -9,6 +9,7 @@
         <title>{% block title %}My Django Blog{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="alternate" type="application/rss+xml" title="Blog posts" href="/feeds/posts/" >
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -38,15 +39,24 @@
             }(document, 'script', 'facebook-jssdk'));</script>
 
         <div class="navbar navbar-static-top navbar-inverse">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-nav">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="/">My Django Blog</a>
-                    <div class="nav-collapse collapse">
+                    </button>
+                    <a class="navbar-brand" href="/">My Django Blog</a>
+                </div>
+                    <div class="collapse navbar-collapse" id="header-nav">
+                        <ul class="nav navbar-nav">
+                            {% load flatpages %}
+                            {% get_flatpages as flatpages %}
+                            {% for flatpage in flatpages %}
+                            <li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
+                            {% endfor %}
+                            <li><a href="/feeds/posts/">RSS feed</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
