@@ -868,7 +868,7 @@ class FeedTest(BaseAcceptanceTest):
         # Create a post
         post = Post()
         post.title = 'My first post'
-        post.text = 'This is my first blog post'
+        post.text = 'This is my *first* blog post'
         post.slug = 'my-first-post'
         post.pub_date = timezone.now()
         post.author = author
@@ -901,7 +901,7 @@ class FeedTest(BaseAcceptanceTest):
         # Check post retrieved is the correct one
         feed_post = feed.entries[0]
         self.assertEquals(feed_post.title, post.title)
-        self.assertEquals(feed_post.description, post.text)
+        self.assertTrue('This is my <em>first</em> blog post' in feed_post.description)
 
 
 class FlatPageViewTest(BaseAcceptanceTest):
