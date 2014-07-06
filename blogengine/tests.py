@@ -49,6 +49,16 @@ class TagFactory(factory.django.DjangoModelFactory):
     slug = 'python'
 
 
+class AuthorFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+        django_get_or_create = ('username','email', 'password',)
+
+    username = 'testuser'
+    email = 'user@example.com'
+    password = 'password'
+
+
 # Create your tests here.
 class PostTest(TestCase):
     def test_create_category(self):
@@ -89,8 +99,7 @@ class PostTest(TestCase):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -407,8 +416,7 @@ class AdminTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -461,8 +469,7 @@ class AdminTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -509,8 +516,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -564,8 +570,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -622,8 +627,7 @@ class PostViewTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -677,8 +681,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -735,8 +738,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag = TagFactory(name='perl', description='The Perl programming language')
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
@@ -789,8 +791,7 @@ class FeedTest(BaseAcceptanceTest):
         tag = TagFactory()
 
         # Create the author
-        author = User.objects.create_user('testuser', 'user@example.com', 'password')
-        author.save()
+        author = AuthorFactory()
 
         # Create the site
         site = SiteFactory()
