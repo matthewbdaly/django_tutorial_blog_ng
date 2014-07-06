@@ -59,6 +59,20 @@ class AuthorFactory(factory.django.DjangoModelFactory):
     password = 'password'
 
 
+class FlatPageFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = FlatPage
+        django_get_or_create = (
+            'url',
+            'title',
+            'content'
+        )
+
+    url = '/about/'
+    title = 'About me'
+    content = 'All about me'
+
+
 # Create your tests here.
 class PostTest(TestCase):
     def test_create_category(self):
@@ -838,11 +852,7 @@ class FeedTest(BaseAcceptanceTest):
 class FlatPageViewTest(BaseAcceptanceTest):
     def test_create_flat_page(self):
         # Create flat page
-        page = FlatPage()
-        page.url = '/about/'
-        page.title = 'About me'
-        page.content = 'All about me'
-        page.save()
+        page = FlatPageFactory()
 
         # Add the site
         page.sites.add(Site.objects.all()[0])
