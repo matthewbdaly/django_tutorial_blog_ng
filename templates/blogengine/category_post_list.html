@@ -1,0 +1,41 @@
+{% extends "blogengine/includes/base.html" %}
+
+    {% load custom_markdown %}
+
+    {% block content %}
+        {% if object_list %}
+            {% for post in object_list %}
+            <div class="post col-md-12">
+            <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
+            <h3>{{ post.pub_date }}</h3>
+            {{ post.text|custom_markdown }}
+            </div>
+            {% if post.category %}
+            <div class="col-md-12">
+            <a href="{{ post.category.get_absolute_url }}"><span class="label label-primary">{{ post.category.name }}</span></a>
+            </div>
+            {% endif %}
+            {% if post.tags %}
+            <div class="col-md-12">
+            {% for tag in post.tags.all %}
+            <a href="{{ tag.get_absolute_url }}"><span class="label label-success">{{ tag.name }}</span></a>
+            {% endfor %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No posts found</p>
+        {% endif %}
+
+        <ul class="pager">
+        {% if page_obj.has_previous %}
+        <li class="previous"><a href="/{{ page_obj.previous_page_number }}/">Previous Page</a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li class="next"><a href="/{{ page_obj.next_page_number }}/">Next Page</a></li>
+        {% endif %}
+        </ul>
+
+        <a href="/feeds/posts/category/{{ category.slug }}/">RSS feed for category {{ category.name }}</a>
+
+    {% endblock %}

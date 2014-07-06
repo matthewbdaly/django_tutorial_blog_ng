@@ -521,6 +521,9 @@ class PostViewTest(BaseAcceptanceTest):
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
 
+        # Check the correct template was used
+        self.assertTemplateUsed(response, 'blogengine/post_list.html')
+
     def test_post_page(self):
         # Create the post
         post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
@@ -563,6 +566,9 @@ class PostViewTest(BaseAcceptanceTest):
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
 
+        # Check the correct template was used
+        self.assertTemplateUsed(response, 'blogengine/post_detail.html')
+
     def test_category_page(self):
         # Create the post
         post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
@@ -593,6 +599,9 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+
+        # Check the correct template was used
+        self.assertTemplateUsed(response, 'blogengine/category_post_list.html')
 
     def test_nonexistent_category_page(self):
         category_url = '/category/blah/'
