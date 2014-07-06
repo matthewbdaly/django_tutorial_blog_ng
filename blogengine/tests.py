@@ -6,6 +6,21 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 import markdown2 as markdown
 import feedparser
+import factory.django
+
+
+# Factories
+class SiteFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Site
+        django_get_or_create = (
+            'name',
+            'domain'
+        )
+        
+    name = 'example.com'
+    domain = 'example.com'
+
 
 # Create your tests here.
 class PostTest(TestCase):
@@ -73,10 +88,7 @@ class PostTest(TestCase):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
         
         # Create the post
         post = Post()
@@ -421,10 +433,7 @@ class AdminTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
         
         # Create the post
         post = Post()
@@ -484,10 +493,7 @@ class AdminTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
         
         # Create the post
         post = Post()
@@ -541,10 +547,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -605,10 +608,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -669,10 +669,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -730,10 +727,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -797,10 +791,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the first post
         post = Post()
@@ -860,10 +851,7 @@ class FeedTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
-        site.save()
+        site = SiteFactory()
  
         # Create a post
         post = Post()
