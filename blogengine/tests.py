@@ -650,6 +650,9 @@ class PostViewTest(BaseAcceptanceTest):
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
 
+        # Check the correct template was used
+        self.assertTemplateUsed(response, 'blogengine/tag_post_list.html')
+
     def test_nonexistent_tag_page(self):
         tag_url = '/tag/blah/'
         response = self.client.get(tag_url)
@@ -723,6 +726,37 @@ class FeedTest(BaseAcceptanceTest):
 
         # Fetch the feed
         response = self.client.get('/feeds/posts/category/python/')
+        self.assertEquals(response.status_code, 200)
+
+        # Parse the feed
+        feed = feedparser.parse(response.content)
+
+        # Check length
+        self.assertEquals(len(feed.entries), 1)
+
+        # Check post retrieved is the correct one
+        feed_post = feed.entries[0]
+        self.assertEquals(feed_post.title, post.title)
+        self.assertTrue('This is my <em>first</em> blog post' in feed_post.description)
+
+        # Check other post is not in this feed
+        self.assertTrue('This is my <em>second</em> blog post' not in response.content)
+
+    def test_tag_feed(self):
+        # Create a post
+        post = PostFactory(text='This is my *first* blog post')
+        tag = TagFactory()
+        post.tags.add(tag)
+        post.save()
+
+        # Create another post with a different tag
+        tag2 = TagFactory(name='perl', description='The Perl programming language', slug='perl')
+        post2 = PostFactory(text='This is my *second* blog post', title='My second post', slug='my-second-post')
+        post2.tags.add(tag2)
+        post2.save()
+
+        # Fetch the feed
+        response = self.client.get('/feeds/posts/tag/python/')
         self.assertEquals(response.status_code, 200)
 
         # Parse the feed
