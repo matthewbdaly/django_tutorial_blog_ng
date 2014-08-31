@@ -10,7 +10,7 @@ import feedparser
 import factory.django
 
 
-# Factories
+# Factories for tests
 class SiteFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Site
