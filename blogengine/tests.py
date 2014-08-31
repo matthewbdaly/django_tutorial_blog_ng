@@ -773,6 +773,10 @@ class FeedTest(BaseAcceptanceTest):
         # Check other post is not in this feed
         self.assertTrue('This is my <em>second</em> blog post' not in response.content)
 
+    def test_tag_does_not_exist_feed(self):
+        # Fetch a non-existent feed
+        response = self.client.get('/feeds/posts/tag/whatever/')
+        self.assertEquals(response.status_code, 404)
 
 class FlatPageViewTest(BaseAcceptanceTest):
     def test_create_flat_page(self):
@@ -833,6 +837,12 @@ class SearchViewTest(BaseAcceptanceTest):
 
         # Check the second post is contained in the results
         self.assertTrue('My second post' in response.content)
+
+    def test_failing_search(self):
+        # Search for content we know is not present
+        response = self.client.get('/search?q=wibble')
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue('No posts found' in response.content)
 
 
 class SitemapTest(BaseAcceptanceTest):
