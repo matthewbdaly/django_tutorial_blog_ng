@@ -1,0 +1,25 @@
+{
+  "name": "django_tutorial_blog_ng",
+  "version": "1.0.0",
+  "description": "Django Tutorial Blog NG =======================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewbdaly/django_tutorial_blog_ng.git"
+  },
+  "author": "Matthew Daly <matthewbdaly@gmail.com> (http://matthewdaly.co.uk/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matthewbdaly/django_tutorial_blog_ng/issues"
+  },
+  "homepage": "https://github.com/matthewbdaly/django_tutorial_blog_ng",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-uglify": "^0.5.1"
+  }
+}

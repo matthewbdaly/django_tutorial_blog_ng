@@ -4,3 +4,4 @@ db.sqlite3
 reports/
 htmlcov/
 .coverage
+node_modules/
