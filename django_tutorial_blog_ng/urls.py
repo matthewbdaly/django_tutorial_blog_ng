@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # Blog URLs
-    url(r'', include('blogengine.urls')),
+    url(r'', include('blogengine.urls', namespace="blogengine")),
 
     # Flat pages
     url(r'', include('django.contrib.flatpages.urls')),
