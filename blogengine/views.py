@@ -100,11 +100,8 @@ class TagPostsFeed(PostsFeed):
         return "RSS feed - blog posts tagged %s" % obj.name
 
     def items(self, obj):
-        try:
-            tag = Tag.objects.get(slug=obj.slug)
-            return tag.post_set.all()
-        except Tag.DoesNotExist:
-            return Post.objects.none()
+        tag = Tag.objects.get(slug=obj.slug)
+        return tag.post_set.all()
 
 
 def getSearchResults(request):
@@ -116,10 +113,7 @@ def getSearchResults(request):
     page = request.GET.get('page', 1)
 
     # Query the database
-    if query:
-        results = Post.objects.filter(Q(text__icontains=query) | Q(title__icontains=query))
-    else:
-        results = None
+    results = Post.objects.filter(Q(text__icontains=query) | Q(title__icontains=query))
 
     # Add pagination
     pages = Paginator(results, 5)
