@@ -1,14 +1,13 @@
-Django==1.6.6
+Django==1.7
 Fabric==1.9.1
 PyYAML==3.11
 Pygments==1.6
-South==0.8.4
 argparse==1.2.1
 astroid==1.0.1
 coverage==3.7.1
 coveralls==0.4.2
 dj-database-url==0.2.2
-dj-static==0.0.5
+dj-static==0.0.6
 django-debug-toolbar==1.2.1
 django-jenkins==0.15.0
 django-pylibmc-sasl==0.2.4
@@ -31,4 +30,5 @@ pylint==1.1.0
 requests==2.3.0
 sqlparse==0.1.11
 static==0.4
+static3==0.5.1
 wsgiref==0.1.2
