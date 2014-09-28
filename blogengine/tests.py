@@ -248,7 +248,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the category
-        response = self.client.post('/admin/blogengine/category/1/', {
+        response = self.client.post('/admin/blogengine/category/' + str(category.pk) + '/', {
             'name': 'perl',
             'description': 'The Perl programming language'
             }, follow=True)
@@ -272,7 +272,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Delete the category
-        response = self.client.post('/admin/blogengine/category/1/delete/', {
+        response = self.client.post('/admin/blogengine/category/' + str(category.pk) + '/delete/', {
             'post': 'yes'
         }, follow=True)
         self.assertEquals(response.status_code, 200)
@@ -316,7 +316,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the tag
-        response = self.client.post('/admin/blogengine/tag/1/', {
+        response = self.client.post('/admin/blogengine/tag/' + str(tag.pk) + '/', {
             'name': 'perl',
             'description': 'The Perl programming language'
             }, follow=True)
@@ -340,7 +340,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Delete the tag
-        response = self.client.post('/admin/blogengine/tag/1/delete/', {
+        response = self.client.post('/admin/blogengine/tag/' + str(tag.pk) + '/delete/', {
             'post': 'yes'
         }, follow=True)
         self.assertEquals(response.status_code, 200)
@@ -424,6 +424,9 @@ class AdminTest(BaseAcceptanceTest):
         # Create the post
         post = PostFactory()
 
+        # Create the category
+        category = CategoryFactory()
+
         # Create the tag
         tag = TagFactory()
         post.tags.add(tag)
@@ -432,15 +435,15 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the post
-        response = self.client.post('/admin/blogengine/post/1/', {
+        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/', {
             'title': 'My second post',
             'text': 'This is my second blog post',
             'pub_date_0': '2013-12-28',
             'pub_date_1': '22:00:04',
             'slug': 'my-second-post',
             'site': '1',
-            'category': '1',
-            'tags': '1'
+            'category': str(category.pk),
+            'tags': str(tag.pk)
         },
         follow=True
         )
@@ -472,7 +475,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Delete the post
-        response = self.client.post('/admin/blogengine/post/1/delete/', {
+        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/delete/', {
             'post': 'yes'
         }, follow=True)
         self.assertEquals(response.status_code, 200)
