@@ -486,6 +486,7 @@ class AdminTest(BaseAcceptanceTest):
         # Check post deleted
         all_posts = Post.objects.all()
         self.assertEquals(len(all_posts), 0)
+        
 
 class PostViewTest(BaseAcceptanceTest):
     def test_index(self):
