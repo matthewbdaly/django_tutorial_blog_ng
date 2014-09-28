@@ -177,7 +177,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_login(self):
         # Get login page
-        response = self.client.get('/admin/')
+        response = self.client.get('/admin/', follow=True)
 
         # Check response code
         self.assertEquals(response.status_code, 200)
@@ -210,7 +210,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.logout()
 
         # Check response code
-        response = self.client.get('/admin/')
+        response = self.client.get('/admin/', follow=True)
         self.assertEquals(response.status_code, 200)
 
         # Check 'Log in' in response
