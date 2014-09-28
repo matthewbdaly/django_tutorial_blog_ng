@@ -374,8 +374,8 @@ class AdminTest(BaseAcceptanceTest):
             'pub_date_1': '22:00:04',
             'slug': 'my-first-post',
             'site': '1',
-            'category': '1',
-            'tags': '1'
+            'category': str(category.pk),
+            'tags': str(tag.pk)
         },
         follow=True
         )
@@ -407,7 +407,7 @@ class AdminTest(BaseAcceptanceTest):
             'pub_date_1': '22:00:04',
             'slug': 'my-first-post',
             'site': '1',
-            'category': '1'
+            'category': str(category.pk)
         },
         follow=True
         )
