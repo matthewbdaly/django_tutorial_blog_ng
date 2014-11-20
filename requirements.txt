@@ -1,4 +1,4 @@
-Django==1.7
+Django==1.7.1
 Fabric==1.9.1
 PyYAML==3.11
 Pygments==1.6
