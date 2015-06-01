@@ -1,6 +1,8 @@
 Django Tutorial Blog NG
 =======================
 
+[![Join the chat at https://gitter.im/matthewbdaly/django_tutorial_blog_ng](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/matthewbdaly/django_tutorial_blog_ng?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/matthewbdaly/django_tutorial_blog_ng.png?branch=master)](https://travis-ci.org/matthewbdaly/django_tutorial_blog_ng)
 [![Coverage Status](https://coveralls.io/repos/matthewbdaly/django_tutorial_blog_ng/badge.png?branch=master)](https://coveralls.io/r/matthewbdaly/django_tutorial_blog_ng?branch=master)
 
