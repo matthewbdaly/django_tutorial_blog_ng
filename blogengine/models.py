@@ -13,13 +13,13 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unicode(self.name))
+            self.slug = slugify(str(self.name))
         super(Category, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return "/category/%s/" % (self.slug)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -32,13 +32,13 @@ class Tag(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(unicode(self.name))
+            self.slug = slugify(str(self.name))
         super(Tag, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return "/tag/%s/" % (self.slug)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
     
 
@@ -55,7 +55,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return "/%s/%s/%s/" % (self.pub_date.year, self.pub_date.month, self.slug)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     class Meta:
