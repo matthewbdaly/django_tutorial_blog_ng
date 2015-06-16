@@ -183,7 +183,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check 'Log in' in response
-        self.assertTrue('Log in' in response.content)
+        self.assertTrue('Log in' in response.content.decode('utf-8'))
 
         # Log the user in
         self.client.login(username='bobsmith', password="password")
@@ -193,7 +193,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check 'Log out' in response
-        self.assertTrue('Log out' in response.content)
+        self.assertTrue('Log out' in response.content.decode('utf-8'))
 
     def test_logout(self):
         # Log in
@@ -204,7 +204,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check 'Log out' in response
-        self.assertTrue('Log out' in response.content)
+        self.assertTrue('Log out' in response.content.decode('utf-8'))
 
         # Log out
         self.client.logout()
@@ -214,7 +214,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check 'Log in' in response
-        self.assertTrue('Log in' in response.content)
+        self.assertTrue('Log in' in response.content.decode('utf-8'))
 
     def test_create_category(self):
         # Log in
@@ -234,7 +234,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check added successfully
-        self.assertTrue('added successfully' in response.content)
+        self.assertTrue('added successfully' in response.content.decode('utf-8'))
 
         # Check new category now in database
         all_categories = Category.objects.all()
@@ -255,7 +255,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check changed successfully
-        self.assertTrue('changed successfully' in response.content)
+        self.assertTrue('changed successfully' in response.content.decode('utf-8'))
 
         # Check category amended
         all_categories = Category.objects.all()
@@ -278,7 +278,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check deleted successfully
-        self.assertTrue('deleted successfully' in response.content)
+        self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
 
         # Check category deleted
         all_categories = Category.objects.all()
@@ -302,7 +302,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check added successfully
-        self.assertTrue('added successfully' in response.content)
+        self.assertTrue('added successfully' in response.content.decode('utf-8'))
 
         # Check new tag now in database
         all_tags = Tag.objects.all()
@@ -323,7 +323,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check changed successfully
-        self.assertTrue('changed successfully' in response.content)
+        self.assertTrue('changed successfully' in response.content.decode('utf-8'))
 
         # Check tag amended
         all_tags = Tag.objects.all()
@@ -346,7 +346,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check deleted successfully
-        self.assertTrue('deleted successfully' in response.content)
+        self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
 
         # Check tag deleted
         all_tags = Tag.objects.all()
@@ -382,7 +382,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check added successfully
-        self.assertTrue('added successfully' in response.content)
+        self.assertTrue('added successfully' in response.content.decode('utf-8'))
 
         # Check new post now in database
         all_posts = Post.objects.all()
@@ -414,7 +414,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check added successfully
-        self.assertTrue('added successfully' in response.content)
+        self.assertTrue('added successfully' in response.content.decode('utf-8'))
 
         # Check new post now in database
         all_posts = Post.objects.all()
@@ -450,7 +450,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check changed successfully
-        self.assertTrue('changed successfully' in response.content)
+        self.assertTrue('changed successfully' in response.content.decode('utf-8'))
 
         # Check post amended
         all_posts = Post.objects.all()
@@ -481,7 +481,7 @@ class AdminTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check deleted successfully
-        self.assertTrue('deleted successfully' in response.content)
+        self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
 
         # Check post deleted
         all_posts = Post.objects.all()
@@ -506,25 +506,25 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check the post title is in the response
-        self.assertTrue(post.title in response.content)
+        self.assertTrue(post.title in response.content.decode('utf-8'))
 
         # Check the post text is in the response
-        self.assertTrue(markdown.markdown(post.text) in response.content)
+        self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
         # Check the post category is in the response
-        self.assertTrue(post.category.name in response.content)
+        self.assertTrue(post.category.name in response.content.decode('utf-8'))
 
         # Check the post tag is in the response
         post_tag = all_posts[0].tags.all()[0]
-        self.assertTrue(post_tag.name in response.content)
+        self.assertTrue(post_tag.name in response.content.decode('utf-8'))
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content)
-        self.assertTrue(post.pub_date.strftime('%b') in response.content)
-        self.assertTrue(str(post.pub_date.day) in response.content)
+        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
+        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
-        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
 
         # Check the correct template was used
         self.assertTemplateUsed(response, 'blogengine/post_list.html')
@@ -551,25 +551,25 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check the post title is in the response
-        self.assertTrue(post.title in response.content)
+        self.assertTrue(post.title in response.content.decode('utf-8'))
 
         # Check the post category is in the response
-        self.assertTrue(post.category.name in response.content)
+        self.assertTrue(post.category.name in response.content.decode('utf-8'))
 
         # Check the post tag is in the response
         post_tag = all_posts[0].tags.all()[0]
-        self.assertTrue(post_tag.name in response.content)
+        self.assertTrue(post_tag.name in response.content.decode('utf-8'))
 
         # Check the post text is in the response
-        self.assertTrue(markdown.markdown(post.text) in response.content)
+        self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content)
-        self.assertTrue(post.pub_date.strftime('%b') in response.content)
-        self.assertTrue(str(post.pub_date.day) in response.content)
+        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
+        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
-        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
 
         # Check the correct template was used
         self.assertTemplateUsed(response, 'blogengine/post_detail.html')
@@ -592,18 +592,18 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check the category name is in the response
-        self.assertTrue(post.category.name in response.content)
+        self.assertTrue(post.category.name in response.content.decode('utf-8'))
 
         # Check the post text is in the response
-        self.assertTrue(markdown.markdown(post.text) in response.content)
+        self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content)
-        self.assertTrue(post.pub_date.strftime('%b') in response.content)
-        self.assertTrue(str(post.pub_date.day) in response.content)
+        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
+        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
-        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
 
         # Check the correct template was used
         self.assertTemplateUsed(response, 'blogengine/category_post_list.html')
@@ -612,7 +612,7 @@ class PostViewTest(BaseAcceptanceTest):
         category_url = '/category/blah/'
         response = self.client.get(category_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('No posts found' in response.content)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
 
     def test_tag_page(self):
         # Create the author
@@ -642,18 +642,18 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check the tag name is in the response
-        self.assertTrue(post.tags.all()[0].name in response.content)
+        self.assertTrue(post.tags.all()[0].name in response.content.decode('utf-8'))
 
         # Check the post text is in the response
-        self.assertTrue(markdown.markdown(post.text) in response.content)
+        self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content)
-        self.assertTrue(post.pub_date.strftime('%b') in response.content)
-        self.assertTrue(str(post.pub_date.day) in response.content)
+        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
+        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
-        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
 
         # Check the correct template was used
         self.assertTemplateUsed(response, 'blogengine/tag_post_list.html')
@@ -662,7 +662,7 @@ class PostViewTest(BaseAcceptanceTest):
         tag_url = '/tag/blah/'
         response = self.client.get(tag_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('No posts found' in response.content)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
 
     def test_clear_cache(self):
         # Create the tag
@@ -688,7 +688,7 @@ class PostViewTest(BaseAcceptanceTest):
         response = self.client.get(reverse('blogengine:index'))
 
         # Check second post present
-        self.assertTrue('my second blog post' in response.content)
+        self.assertTrue('my second blog post' in response.content.decode('utf-8'))
 
 
 class FeedTest(BaseAcceptanceTest):
@@ -745,7 +745,7 @@ class FeedTest(BaseAcceptanceTest):
         self.assertTrue('This is my <em>first</em> blog post' in feed_post.description)
 
         # Check other post is not in this feed
-        self.assertTrue('This is my <em>second</em> blog post' not in response.content)
+        self.assertTrue('This is my <em>second</em> blog post' not in response.content.decode('utf-8'))
 
     def test_tag_feed(self):
         # Create a post
@@ -776,7 +776,7 @@ class FeedTest(BaseAcceptanceTest):
         self.assertTrue('This is my <em>first</em> blog post' in feed_post.description)
 
         # Check other post is not in this feed
-        self.assertTrue('This is my <em>second</em> blog post' not in response.content)
+        self.assertTrue('This is my <em>second</em> blog post' not in response.content.decode('utf-8'))
 
 
 class FlatPageViewTest(BaseAcceptanceTest):
@@ -807,8 +807,8 @@ class FlatPageViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check title and content in response
-        self.assertTrue('About me' in response.content)
-        self.assertTrue('All about me' in response.content)
+        self.assertTrue('About me' in response.content.decode('utf-8'))
+        self.assertTrue('All about me' in response.content.decode('utf-8'))
 
 
 class SearchViewTest(BaseAcceptanceTest):
@@ -824,31 +824,31 @@ class SearchViewTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check the first post is contained in the results
-        self.assertTrue('My first post' in response.content)
+        self.assertTrue('My first post' in response.content.decode('utf-8'))
 
         # Check the second post is not contained in the results
-        self.assertTrue('My second post' not in response.content)
+        self.assertTrue('My second post' not in response.content.decode('utf-8'))
 
         # Search for second post
         response = self.client.get(reverse('blogengine:search') + '?q=second')
         self.assertEqual(response.status_code, 200)
 
         # Check the first post is not contained in the results
-        self.assertTrue('My first post' not in response.content)
+        self.assertTrue('My first post' not in response.content.decode('utf-8'))
 
         # Check the second post is contained in the results
-        self.assertTrue('My second post' in response.content)
+        self.assertTrue('My second post' in response.content.decode('utf-8'))
 
     def test_failing_search(self):
         # Search for something that is not present
         response = self.client.get(reverse('blogengine:search') + '?q=wibble')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('No posts found' in response.content)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
 
         # Try to get nonexistent second page
         response = self.client.get(reverse('blogengine:search') + '?q=wibble&page=2')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('No posts found' in response.content)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
 
 
 class SitemapTest(BaseAcceptanceTest):
@@ -864,7 +864,7 @@ class SitemapTest(BaseAcceptanceTest):
         self.assertEqual(response.status_code, 200)
 
         # Check post is present in sitemap
-        self.assertTrue('my-first-post' in response.content)
+        self.assertTrue('my-first-post' in response.content.decode('utf-8'))
 
         # Check page is present in sitemap
-        self.assertTrue('/about/' in response.content)
+        self.assertTrue('/about/' in response.content.decode('utf-8'))
