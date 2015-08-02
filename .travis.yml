@@ -2,6 +2,7 @@ language: python
 python:
 - "3.4"
 services: memcached
+sudo: false
 before_install:
     - sudo apt-get install -y libmemcached-dev
 # command to install dependencies
