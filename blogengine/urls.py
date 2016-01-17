@@ -11,7 +11,7 @@ sitemaps = {
     'pages': FlatpageSitemap
 }
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Index
     url(r'^(?P<page>\d+)?/?$', ListView.as_view(
         model=Post,
@@ -58,4 +58,4 @@ urlpatterns = patterns('',
     # Sitemap
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
             name='django.contrib.sitemaps.views.sitemap'),
-)
+]

@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'django_tutorial_blog_ng.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
@@ -15,4 +15,4 @@ urlpatterns = patterns('',
 
     # Flat pages
     url(r'', include('django.contrib.flatpages.urls')),
-)
+]
