@@ -248,7 +248,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the category
-        response = self.client.post('/admin/blogengine/category/' + str(category.pk) + '/', {
+        response = self.client.post('/admin/blogengine/category/' + str(category.pk) + '/change/', {
             'name': 'perl',
             'description': 'The Perl programming language'
             }, follow=True)
@@ -316,7 +316,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the tag
-        response = self.client.post('/admin/blogengine/tag/' + str(tag.pk) + '/', {
+        response = self.client.post('/admin/blogengine/tag/' + str(tag.pk) + '/change/', {
             'name': 'perl',
             'description': 'The Perl programming language'
             }, follow=True)
@@ -435,7 +435,7 @@ class AdminTest(BaseAcceptanceTest):
         self.client.login(username='bobsmith', password="password")
 
         # Edit the post
-        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/', {
+        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/change/', {
             'title': 'My second post',
             'text': 'This is my second blog post',
             'pub_date_0': '2013-12-28',
