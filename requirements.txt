@@ -7,7 +7,7 @@ dj-database-url==0.3.0
 dj-static==0.0.6
 django-debug-toolbar==1.4
 django-jenkins==0.18.1
-django-pylibmc==0.6.0
+django-pylibmc==0.6.1
 django-pylibmc-sasl==0.2.4
 django-toolbelt==0.0.1
 docopt==0.6.2
@@ -20,7 +20,7 @@ ipython==3.1.0
 markdown2==2.3.0
 psycopg2==2.6.1
 pygments-style-solarized==0.1.1
-pylibmc==1.4.3
+pylibmc==1.5.0
 requests==2.7.0
 sqlparse==0.1.18
 static3==0.6.1
