@@ -10,4 +10,4 @@ The source for the new version of my Django tutorial blog. Now ported to Python 
 
 The original is somewhat outdated and doesn't reflect best practices, so this is a newer version. Unlike the original, it was built using TDD practices and has 100% test coverage.
 
-The tutorials can be found [here](http://matthewdaly.co.uk/blog/categories/django/)
+The tutorials can be found [here](https://matthewdaly.co.uk/blog/categories/django-blog-tutorial/)
