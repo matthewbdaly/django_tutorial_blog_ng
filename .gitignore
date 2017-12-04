@@ -5,3 +5,4 @@ reports/
 htmlcov/
 .coverage
 node_modules/
+*.swp
