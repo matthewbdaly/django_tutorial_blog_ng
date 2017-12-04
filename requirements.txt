@@ -29,7 +29,6 @@ parso==0.1.0
 path.py==10.5
 pexpect==4.3.0
 pickleshare==0.7.4
-pkg-resources==0.0.0
 prompt-toolkit==1.0.15
 psycopg2==2.7.3.2
 ptyprocess==0.5.2
