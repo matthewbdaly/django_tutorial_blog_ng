@@ -32,9 +32,9 @@ class Migration(migrations.Migration):
                 ('pub_date', models.DateTimeField()),
                 ('text', models.TextField()),
                 ('slug', models.SlugField(unique=True, max_length=40)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('category', models.ForeignKey(blank=True, to='blogengine.Category', null=True)),
-                ('site', models.ForeignKey(to='sites.Site')),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('category', models.ForeignKey(blank=True, to='blogengine.Category', null=True, on_delete=models.CASCADE)),
+                ('site', models.ForeignKey(to='sites.Site', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-pub_date'],
