@@ -13,8 +13,8 @@ django-pylibmc==0.6.1
 django-pylibmc-sasl==0.2.4
 django-toolbelt==0.0.1
 docopt==0.6.2
+fake-factory==0.7.4
 factory-boy==2.9.2
-fake-factory==9999.9.9
 Faker==0.8.7
 feedparser==5.2.1
 gnureadline==6.3.8
