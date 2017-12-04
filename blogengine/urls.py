@@ -11,6 +11,7 @@ sitemaps = {
     'pages': FlatpageSitemap
 }
 
+app_name = 'blogengine'
 urlpatterns = [
     # Index
     url(r'^(?P<page>\d+)?/?$', ListView.as_view(
