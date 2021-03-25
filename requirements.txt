@@ -37,7 +37,7 @@ pygments-style-solarized==0.1.1
 pylibmc==1.5.2
 python-dateutil==2.6.1
 pytz==2017.3
-PyYAML==5.1
+PyYAML==5.4
 requests==2.20.0
 simplegeneric==0.8.1
 six==1.11.0
